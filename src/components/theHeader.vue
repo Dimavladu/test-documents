@@ -59,4 +59,8 @@ h1
 
   &:hover
     background: #f0f0f0
+.disabled
+  opacity: 0.5
+  cursor: not-allowed
+  pointer-events: none
 </style>

@@ -1,39 +1,77 @@
 <template>
-  <transition
-    name="expand"
-    @enter="enter"
-    @after-enter="afterEnter"
-    @leave="leave"
+  <draggable
+    v-model="subCards"
+    item-key="id"
+    handle=".move"
+    ghost-class="ghost"
+    :group="{ name: 'sub' }"
   >
-    <ul class="subcard" v-show="list.open">
-      <li class="subcard_item" v-for="item in list.subCard" :key="item.id">
-        <div class="body">
-          <div class="title">{{ item.title }}</div>
-          <div class="dots" v-for="dot in item.status" :key="dot">
-            <dot-svg :style="{ fill: dot }" />
-          </div>
-          <div class="required">{{ item.required }}</div>
-          <div class="text">{{ item.role }}</div>
+    <template #item="subCard">
+      <transition
+        name="expand"
+        @enter="enter"
+        @after-enter="afterEnter"
+        @leave="leave"
+      >
+        <div
+          class="subcard"
+          v-show="open || open === undefined"
+          :class="$attrs.class"
+        >
+          <li class="subcard_item">
+            <div class="subcard_body">
+              <div class="subcard_title">{{ subCard.element.title }}</div>
+
+              <div
+                class="dots"
+                v-for="dot in subCard.element.status"
+                :key="dot"
+              >
+                <dot-svg :style="{ fill: dot }" />
+              </div>
+              <div class="subcard_required">{{ subCard.element.required }}</div>
+              <div class="subcard_text">{{ subCard.element.role }}</div>
+            </div>
+            <card-btns />
+          </li>
         </div>
-        <card-btns />
-      </li>
-    </ul>
-  </transition>
+      </transition>
+    </template>
+  </draggable>
 </template>
 
 <script>
+import { computed } from "vue";
+
 import dotSvg from "./svg/dot.vue";
 import cardBtns from "./cardBtns.vue";
 
+import draggable from "vuedraggable";
+
 export default {
+  inheritAttrs: false,
   props: {
-    list: {
-      type: Object,
+    dataSubCards: {
+      type: Array,
       required: false,
     },
+    open: {
+      type: Boolean,
+      required: false,
+      default: () => undefined,
+    },
   },
-  components: { dotSvg, cardBtns },
-  setup() {
+  components: { draggable, cardBtns, dotSvg },
+  setup(props, { emit }) {
+    // const changeCards = (cards) => emit("changeCards", cards);
+    const subCards = computed({
+      get() {
+        return props.dataSubCards;
+      },
+      set(val) {
+        emit("changeCards", val);
+      },
+    });
     const enter = (el) => {
       el.style.height = "auto";
       const height = getComputedStyle(el).height;
@@ -43,6 +81,7 @@ export default {
         el.style.height = height;
       });
     };
+
     const afterEnter = (el) => {
       el.style.height = "auto";
     };
@@ -53,7 +92,7 @@ export default {
         el.style.height = 0;
       });
     };
-    return { enter, afterEnter, leave };
+    return { enter, afterEnter, leave, subCards };
   },
 };
 </script>
@@ -69,28 +108,34 @@ export default {
   padding: 0
   list-style: none
   &_item
+    margin-top: -1px
+    transition: 0.3s all ease
     border: 1px solid #D3D8DF
-    border-top: none
     display: flex
     justify-content: space-between
     align-items: center
     padding: 10px 16px
-    .body
+    .subcard_body
       display: flex
       align-items: center
       gap: 10px
-      .title
+      .subcard_title
         font-weight: 500
-      .dots
+      .subcard_dots
 
-      .required
+      .subcard_required
         color: #FF238D
         margin-top: 2px
         font-weight: 400
         font-size: 11px
-      .text
+      .subcard_text
         margin-top: 2px
         color: #8E9CBB
         font-weight: 400
         font-size: 11px
+.ghost
+  opacity: 0.9
+  background: #c8ebfb
+.margStyle
+  margin: 0
 </style>
