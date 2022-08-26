@@ -1,6 +1,7 @@
 <template>
   <div class="container">
     <the-header />
+    <the-input />
     <the-card
       :dataCards="cards"
       @changeCards="(cards) => changeCards('cards', cards)"
@@ -23,14 +24,14 @@
 import { ref, computed } from "vue";
 import { useStore } from "vuex";
 
+import theInput from "./components/theInput.vue";
 import theHeader from "./components/theHeader.vue";
 import theCard from "./components/theCard.vue";
 import theSubCard from "./components/theSubCard.vue";
-import otherCards from "./components/otherCards.vue";
 
 export default {
   name: "App",
-  components: { theHeader, theCard, theSubCard, otherCards },
+  components: { theInput, theHeader, theCard, theSubCard },
   setup() {
     const store = useStore();
 

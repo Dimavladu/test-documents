@@ -32,4 +32,6 @@
 <style lang='sass' scoped>
 .move
   cursor: grab
+  &:hover
+    color: #0066FF
 </style>

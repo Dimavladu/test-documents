@@ -15,5 +15,6 @@
 </template>
 <style lang="sass" scoped>
 .change
+  padding: 1px 0px
   cursor: pointer
 </style>

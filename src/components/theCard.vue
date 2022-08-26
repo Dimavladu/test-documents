@@ -35,7 +35,6 @@
                     {{ card.element.description }}
                   </div>
                 </div>
-
                 <card-btns />
               </div>
             </div>
@@ -81,9 +80,7 @@ export default {
         emit("changeCards", val);
       },
     });
-    const changeCards = (cards) => {
-      emit("changeCards", cards);
-    };
+    const changeCards = (cards) => emit("changeCards", cards);
     return { cards, changeCards };
   },
 };

@@ -78,11 +78,8 @@ export default createStore({
         role: "Для всех",
         id: 12324,
       },
-  ]
-
-  },
-
-  getters: {
+    ],
+    searchedCards: []
   },
   mutations: {
     updateCards(state, [val, type]){
@@ -91,11 +88,14 @@ export default createStore({
     changeModal(state, type){
       state.modal = type
     },
-    select(state, value = {}) {
-      state.selected = value
+    searchCards(state, text){
+      
     }
   },
   actions: {
+  },
+  
+  getters: {
   },
   modules: {
   }

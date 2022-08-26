@@ -21,7 +21,6 @@
           <li class="subcard_item">
             <div class="subcard_body">
               <div class="subcard_title">{{ subCard.element.title }}</div>
-
               <div
                 class="dots"
                 v-for="dot in subCard.element.status"
@@ -120,6 +119,7 @@ export default {
       align-items: center
       gap: 10px
       .subcard_title
+        font-size: 14px
         font-weight: 500
       .subcard_dots
 
