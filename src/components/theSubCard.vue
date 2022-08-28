@@ -62,7 +62,6 @@ export default {
   },
   components: { draggable, cardBtns, dotSvg },
   setup(props, { emit }) {
-    // const changeCards = (cards) => emit("changeCards", cards);
     const subCards = computed({
       get() {
         return props.dataSubCards;

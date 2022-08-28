@@ -1,8 +1,8 @@
 <template>
   <svg
-    class="svg"
-    width="16"
-    height="17"
+    class="svg search"
+    width="14"
+    height="16"
     viewBox="0 0 16 17"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
@@ -15,3 +15,7 @@
     />
   </svg>
 </template>
+<style lang="sass" scoped>
+.search
+  margin-bottom: 1px
+</style>

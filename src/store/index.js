@@ -16,7 +16,7 @@ export default createStore({
             status: ["blue"],
             required: "Обязательный",
             role: "Для всех",
-            id: 123123,
+            id: 1223,
           },
           {
             title: "ИНН",
@@ -46,7 +46,7 @@ export default createStore({
             status: [],
             required: "Обязательный",
             role: "Для всех",
-            id: 123324,
+            id: 12334,
           },
         ],
       },
@@ -69,7 +69,7 @@ export default createStore({
         status: [],
         required: "",
         role: "Для всех",
-        id: 12324,
+        id: 124,
       },
       {
         title: "Тестовое задание кандидата",
@@ -78,8 +78,7 @@ export default createStore({
         role: "Для всех",
         id: 12324,
       },
-    ],
-    searchedCards: []
+    ]
   },
   mutations: {
     updateCards(state, [val, type]){
@@ -88,9 +87,6 @@ export default createStore({
     changeModal(state, type){
       state.modal = type
     },
-    searchCards(state, text){
-      
-    }
   },
   actions: {
   },

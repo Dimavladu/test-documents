@@ -1,6 +1,6 @@
 <template>
   <svg
-    class="svg"
+    class="svg cross"
     width="12"
     height="12"
     viewBox="0 0 12 12"
@@ -17,3 +17,11 @@
     />
   </svg>
 </template>
+<style lang="sass" scoped>
+.cross
+  padding: 1px 0px
+  cursor: pointer
+  transition: .3s all ease
+  &:hover
+    opacity: 0.6
+</style>
